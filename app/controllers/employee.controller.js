@@ -3,6 +3,7 @@ const Employee = db.employee;
 
 // Create and Save a new Employee
 exports.create = (req, res) => {
+  // const req = JSON.parse(reqStr);
   // Validate request
   if (!req.body.firstName) {
     res.status(400).send({ message: "Content can not be empty!" });
@@ -10,20 +11,22 @@ exports.create = (req, res) => {
   }
 
   // Create a Employee
-  // const employeeData = new Employee({
-  //   title: req.body.title,
-  //   description: req.body.description,
-  //   published: req.body.published ? req.body.published : false
-  // });
   const employeeData = new Employee({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     dateOfJoin: req.body.dateOfJoin,
     department: req.body.department,
     contactNo: req.body.contactNo,
-    emailID: req.body.contactNo,
+    emailID: req.body.emailID,
     highestQualification: req.body.highestQualification,
-    action: req.body.action
+    action: req.body.action,
+    isActive: req.body.isActive,
+    address: req.body.address,
+    completionYear: req.body.completionYear,
+    gpa: req.body.gpa,
+    university: req.body.university,
+    experience: req.body.experience,
+    salary: req.body.salary,
   });
 
   // Save Employee in the database
@@ -138,16 +141,3 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// Find all published Employee
-exports.findAllPublished = (req, res) => {
-  Employee.find({ published: true })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving employee."
-      });
-    });
-};

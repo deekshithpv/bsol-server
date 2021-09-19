@@ -8,7 +8,14 @@ module.exports = mongoose => {
       contactNo: String,
       emailID: String,
       highestQualification: String,
-      action: String
+      action: String,
+      address: String,
+      completionYear: String,
+      gpa: String,
+      university: String,
+      experience: String,
+      salary: String,
+      isActive: String
     },
     { timestamps: true }
   );
